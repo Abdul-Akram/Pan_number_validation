@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN Number Checker</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .inputs {
+            margin-bottom: 20px;
+        }
+
+        #head {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .error {
+            color: #ff4d4d;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        button[type="button"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button[type="button"]:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="button"]:active {
+            background-color: #004080;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inputs">
+            <p id="head">PAN Card Verification</p>
+            <input type="text" name="pan" id="pan" placeholder="Enter PAN Number">
+        </div>
+        <div class="error" id="error"></div>
+        <button type="button" onclick="check()">Submit</button>
+    </div>
+    <script>
+        function check() {
+            const pan = document.getElementById("pan").value;
+            const pattern = /^[A-Z]{5}\d{4}[A-Z]$/;
+            const errorElement = document.getElementById("error");
+
+            if (pattern.test(pan)) {
+                errorElement.style.color = "green";
+                errorElement.innerHTML = "Valid PAN Number";
+            } else {
+                errorElement.style.color = "#ff4d4d";
+                errorElement.innerHTML = "Invalid PAN Number";
+                document.getElementById("pan").value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
